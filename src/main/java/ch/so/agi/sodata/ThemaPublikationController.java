@@ -9,6 +9,7 @@ import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -30,11 +31,6 @@ public class ThemaPublikationController {
     public List<ThemaPublikation> findAll() {
         return themaPublikationService.findAll();
     }
-    
-//    @PostMapping(path = "/search") 
-//    public List<ThemaPublikation> search(@RequestParam(name = "search") String search) {
-//        return themaPublikationService.findByFilter(search);
-//    }
 
     @PostMapping(path = "/search") 
     public ModelAndView search(@RequestParam(name = "search") String search) {
@@ -47,11 +43,20 @@ public class ThemaPublikationController {
         return mav;
     }
 
-    @GetMapping("/web/themapublikation")
+    @GetMapping("/themapublikation")
     public ModelAndView showAll() {
         ModelAndView mav = new ModelAndView("themapublikation");
         mav.addObject("themaPublikationList", new ArrayList<ThemaPublikation>());
         return mav;
     }
+
+    @GetMapping("/themapublikation/{id}")
+    public ModelAndView showDetail(@PathVariable(name = "id") String id) {
+        System.out.println(id);
+        ModelAndView mav = new ModelAndView("detail");
+        mav.addObject("themaPublikationList", new ArrayList<ThemaPublikation>());
+        return mav;
+    }
+
     
 }

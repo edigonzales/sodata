@@ -1,0 +1,59 @@
+html,
+button, input, optgroup, select, textarea {
+    font-family: Frutiger, system-ui, Roboto, sans;
+    color: #333333;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: bold;
+}
+
+.input-field input[type=text] {
+    background-color: rgb(245, 245, 245);
+}
+
+/* label focus color */
+.input-field input[type=text]:focus + label {
+    color: rgb(198, 40, 40);
+}
+
+/* label underline focus color */
+.input-field input[type=text]:focus {
+    border-bottom: 1px solid rgb(198, 40, 40);
+    /*box-shadow: 0 1px 0 0 #333333;*/
+}
+/* valid color */
+.input-field input[type=text].valid {
+    border-bottom: 1px solid #333333;
+    box-shadow: 0 1px 0 0 #333333;
+}
+
+table th {
+  letter-spacing: .1em;
+  /*text-transform: uppercase;*/
+}
+
+.black-link {
+    overflow: hidden;
+    color: #333333; 
+}
+
+a.black-link:hover {
+    color: #333333;
+}  
+
+a.black-link:visited {
+    color: #333333; 
+}  
+
+.badge-file {
+    display: inline-block;
+    padding: 5px 10px;
+    background-color: #eaeaea;
+    color: #222222;
+    border-radius: 3px;
+    font-size: 12px;
+    font-weight: normal;
+    box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+

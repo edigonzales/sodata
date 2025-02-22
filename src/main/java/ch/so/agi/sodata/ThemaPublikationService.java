@@ -33,7 +33,7 @@ FROM
 WHERE 
     lower(t.titel) LIKE :filter           
 ORDER BY 
-    t.id
+    t.titel
 ; 
                 """;
         return jdbcClient.sql(stmt)
@@ -54,7 +54,7 @@ FROM
     LEFT JOIN amt_ AS a
     ON a.thempblktn_thmpblktion_datenherr = t.T_Id
 ORDER BY 
-    t.id
+    t.titel
 ; 
                 """;
 

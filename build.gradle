@@ -26,7 +26,7 @@ dependencies {
     implementation 'gg.jte:jte:3.1.12'
     implementation 'gg.jte:jte-spring-boot-starter-3:3.1.12'
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
-    runtimeOnly 'org.duckdb:duckdb_jdbc:1.2.0'
+    //runtimeOnly 'org.duckdb:duckdb_jdbc:1.2.0'
     runtimeOnly 'org.xerial:sqlite-jdbc'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
