@@ -2,6 +2,7 @@ package ch.so.agi.sodata;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -52,9 +53,10 @@ public class ThemaPublikationController {
 
     @GetMapping("/themapublikation/{id}")
     public ModelAndView showDetail(@PathVariable(name = "id") String id) {
-        System.out.println(id);
+        ThemaPublikation themaPublikation = themaPublikationService.findById(id)
+                .orElseThrow(() -> new IllegalStateException("Item not found with id: " + id));
         ModelAndView mav = new ModelAndView("detail");
-        mav.addObject("themaPublikationList", new ArrayList<ThemaPublikation>());
+        mav.addObject("themaPublikation", themaPublikation);
         return mav;
     }
 

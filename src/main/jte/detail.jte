@@ -1,7 +1,7 @@
 @import java.util.List
 @import ch.so.agi.sodata.ThemaPublikation
 
-@param List<ThemaPublikation> themaPublikationList
+@param ThemaPublikation themaPublikation
 
 <!DOCTYPE html>
 <html lang="en">
@@ -12,7 +12,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=0" />
     <meta name="mobile-web-app-capable" content="yes" />
 
-    <title>Datenportal • Kanton Solothurn</title>
+    <title>Datenportal • Kanton Solothurn: ${themaPublikation.titel()}</title>
     
     <script src="https://unpkg.com/htmx.org@2.0.4"></script>
 
@@ -31,40 +31,59 @@
         </div>
 
         <div class="left-align" style="margin-top:120px;">
-            <h3>Datenportal Kanton Solothurn</h3>
+            <h4>${themaPublikation.titel()}</h4>
         </div>
 
-        <div class="left-align" style="margin-top:30px; font-size: 16px; line-height: 1.42857143;">
-            Lorem ipsum odor amet, consectetuer adipiscing elit. Nisi donec vulputate posuere auctor dictum ante. Eu convallis mi consequat per sollicitudin vestibulum odio ut maximus. Maecenas tellus sodales eget nunc volutpat nam integer? Efficitur lobortis posuere aptent id aliquam nec nibh litora. Accumsan enim feugiat morbi, integer pharetra ad. Nec aenean rhoncus ridiculus arcu sapien est vitae. Natoque nisl arcu habitasse morbi netus egestas justo. Rhoncus tellus pellentesque vivamus purus phasellus varius suscipit.
-            <br/><br/>Ad diam tristique netus conubia dui maecenas pretium aenean. Ridiculus dictum ligula pretium, ridiculus maecenas tortor. Velit pulvinar lectus hac pretium inceptos duis? Tristique facilisi neque odio; dapibus praesent lobortis. Proin ex gravida magnis scelerisque tristique venenatis. Ligula ex facilisis montes vestibulum vel etiam non?	        
+        <div class="left-align" style="margin-top:40px;">
+            <h6>Beschreibung</h6>
+            <p>${themaPublikation.beschreibung()}</p>
         </div>
 
-        <div style="margin-top:40px; margin-bottom:30px;">
-            <div class="s12 m6 input-field">
-                <div class="prefix"><i class="material-icons">search</i></div>
-                <div class="suffix" hx-on:click="document.querySelector('#search-input').value = ''; htmx.trigger('#search-input', 'input');"><i class="material-icons">clear</i></div>
-                <input id="search-input" placeholder=" " type="text"
-                name="search" 
-                hx-post="/search"
-                hx-trigger="input changed delay:500ms, keyup[key=='Enter'], load"
-                hx-target="#search-results">
-                <label for="search-input">Suchbegriff</label>    
-            </div>
+        <div class="left-align" style="margin-top:40px;">
+            <h6>Schlagwörter</h6>
+            <p>
+                @for (var tag : themaPublikation.tags())
+                    <span class="badge-file">${tag}</span>
+                @endfor
+            </p>
         </div>
 
-        <table class="responsive-table">
-            <thead>
-            <tr>
-                <th>Thema</th>
-                <th>Publikationsdatum</th>
-                <th>Metadaten</th>
-                <th>Daten herunterladen</th>
-            </tr>
-            </thead>
-            <tbody id="search-results">
-                @template.search-results(themaPublikationList = themaPublikationList)
-            </tbody>
-        </table>    
+        <div class="left-align" style="margin-top:40px;">
+            <h6>Datum der letzten Publikation</h6>
+            <p>${themaPublikation.publiziertAm().format(java.time.format.DateTimeFormatter.ofPattern("dd. MMMM yyyy", java.util.Locale.GERMAN))}</p>
+        </div>
+
+        <div class="left-align" style="margin-top:40px;">
+            <h6>Datenmodell</h6>
+            <p><a href='${"https://sos-ch-dk-2.exo.io/ch.so.agi.fubar1/" + themaPublikation.modell() + ".ili"}' class="red-link" target="_blank">${themaPublikation.modell()}</a></p>
+        </div>
+
+        <div class="left-align" style="margin-top:40px;">
+            <h6>Periodizität</h6>
+            <p>todo</p>
+        </div>
+
+        <div class="left-align" style="margin-top:40px;">
+            <h6>Zeitraum von/bis</h6>
+            <p>todo</p>
+        </div>
+
+        <div class="left-align" style="margin-top:40px;">
+            <h6>Lizenz</h6>
+            <p><a href='https://files.geo.so.ch/nutzungsbedingungen.html' class="red-link" target="_blank">https://files.geo.so.ch/nutzungsbedingungen.html</a></p>
+        </div>
+
+        <div class="left-align" style="margin-top:40px;">
+            <h6>Kontakt (fachlich)</h6>
+            <p><a href="${themaPublikation.datenherr().amtImWeb()}" class="red-link" target="_blank">${themaPublikation.datenherr().name()}</a>
+            </p>
+        </div>
+
+        <div class="left-align" style="margin-top:40px;">
+            <h6>Kontakt (technisch)</h6>
+            <p><a href="https://agi.so.ch" class="red-link" target="_blank">Amt für Geoinformation</a>
+            </p>
+        </div>    
     </div>
 </body>
 </html>

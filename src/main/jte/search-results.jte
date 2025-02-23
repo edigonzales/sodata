@@ -5,7 +5,6 @@
 @param List<ThemaPublikation> themaPublikationList
 @param String baseUrl = "https://sos-ch-dk-2.exo.io/ch.so.agi.fubar1/"
 
-
 @for (var themaPublikation : themaPublikationList) 
     <tr>
         <td>${themaPublikation.titel()}</td>
@@ -22,3 +21,4 @@
         </td>
     </tr>
 @endfor
+    
